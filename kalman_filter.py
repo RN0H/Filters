@@ -49,7 +49,7 @@ if __name__=="__main__":
             plt.ylim([-20,20])
             if _>50:
                 plt.xlim([50, 100])
-            sense = np.random.randn()
+            sense = 10*np.random.randn()
             y.append(sense)
 
             k.predict()         #prediction step
@@ -57,6 +57,6 @@ if __name__=="__main__":
 
             yk.append(k.X)
             plt.plot(x,y, 'r', x, yk, 'g')
-            plt.legend(["Signal", "Filterd"])
+            plt.legend(["Signal", "KF"])
             plt.show()
             plt.pause(0.1)
