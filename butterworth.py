@@ -1,3 +1,6 @@
+import scipy
+from scipy import signal
+
 configs = {"Sampling_frequency":1000,
             "Low_frequency_cutoff":10,
             "High_frequency_cutoff":20,
