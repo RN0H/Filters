@@ -41,7 +41,7 @@ if __name__=="__main__":
         plt.ion()
         fig = plt.figure()
         plt.xlim([0, 50])
-        x,y, yk = [], [], []
+        x,y, yk, ym = [], [], [], []
 
         k = KF(0, 1)
         for _ in range(100):
@@ -49,14 +49,18 @@ if __name__=="__main__":
             plt.ylim([-20,20])
             if _>50:
                 plt.xlim([50, 100])
-            sense = 10*np.random.randn()
-            y.append(sense)
+            sense1 = 3*np.random.randn()
+            sense2 = sense1+2*np.random.randn()
 
-            k.predict(sense)                      #prediction step = real
-            k.update(sense+5*np.random.randn())   #update using measurement = real+noise
+            y.append(sense1)
+            ym.append(sense2)
+
+            k.predict(sense1)                      #prediction step = real
+            k.update(sense2)   #update using measurement = real+noise
 
             yk.append(k.X)
-            plt.plot(x,y, 'r', x, yk, 'g')
+
+            plt.plot(x,y, 'r', x, yk, 'g', x, ym, 'b')
             plt.legend(["Signal", "KF"])
             plt.show()
             plt.pause(0.1)
