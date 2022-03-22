@@ -9,16 +9,16 @@ class KF:
         self.P = P
         self.U = 0
 
-    def predict(self):
-        F = 1; G = 0
-        Q = 0.01
-
+    def predict(self, *new_state):
+        F = 1; G = 0    #F = state dynamic matrix, G = control input matrix
+        Q = 0.1         #Q = process covariance
+        if new_state:   self.X = new_state[0]
         self.X_ = F*self.X   + G*self.U
         self.P_ = F*self.P*F + Q
 
     def update(self, measurement):
         H = 1; M = 1
-        V = 0.01; R = 0.1
+        V = 0.1; R = 0.1
         Z = measurement
 
         #INNOVATION
@@ -52,8 +52,8 @@ if __name__=="__main__":
             sense = 10*np.random.randn()
             y.append(sense)
 
-            k.predict()         #prediction step
-            k.update(sense)     #update using measurement
+            k.predict(sense)                      #prediction step = real
+            k.update(sense+5*np.random.randn())   #update using measurement = real+noise
 
             yk.append(k.X)
             plt.plot(x,y, 'r', x, yk, 'g')

@@ -1,11 +1,9 @@
 import scipy
 from scipy import signal
+import numpy as np
+import random
+import matplotlib.pyplot as plt
 
-configs = {"Sampling_frequency":1000,
-            "Low_frequency_cutoff":10,
-            "High_frequency_cutoff":20,
-            "order":2
-            }
 
 class Filter:
     def __init__ (self,**args):
@@ -25,4 +23,18 @@ class Filter:
         return self.filtered_data
 
 if __name__ == "__main__":
-    pass
+    configs = {"Sampling_frequency":1000,
+            "Low_frequency_cutoff":10,
+            "High_frequency_cutoff":20,
+            "order":2
+            }
+    y =  [np.random.randn() for _ in range(1000)]
+    yf = Filter(**configs).butterlow(y)
+
+    plt.xlabel("Time(s)"); plt.ylabel("points")
+    plt.xlim([0,1000]); plt.ylim([-10, 10])
+
+
+    plt.plot(range(len(y)), y, 'r', range(len(yf)), yf, 'g')
+    plt.legend(["signal", "filtered"], loc = "upper right")
+    plt.show()
