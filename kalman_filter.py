@@ -17,9 +17,9 @@ class KF:
         self.P_ = F*self.P*F + Q
 
     def update(self, measurement):
-        H = 1; M = 1
-        V = 0.1; R = 0.1
-        Z = measurement
+        H = 1; M = 1     #H = measurement matrix, M = measurement noise matrix
+        V = 0.1; R = 0.1 #V = measurement noise vector, R = innovation covariance noise
+        Z = measurement  
 
         #INNOVATION
         y = Z - H*self.X
