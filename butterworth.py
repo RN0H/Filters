@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 
 
 class Filter:
-    def __init__ (self,**args):
-        self.__dict__.update(args)
+    def __init__ (self,**kwargs):
+        self.__dict__.update(kwargs)
         self.nyq = self.Sampling_frequency/2
         self.Low_frequency_cutoff/=self.nyq;
         self.High_frequency_cutoff/=self.nyq
