@@ -1,3 +1,14 @@
+ #!/usr/bin/env python3 
+# -*- coding: utf-8 -*- 
+
+#================================================
+# Author : Rohan Panicker
+# Created Date: 10/4/22
+# version ='1.0'
+#================================================
+
+
+
 import scipy
 from scipy import signal
 import numpy as np
