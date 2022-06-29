@@ -50,7 +50,8 @@ class KF:
 
 if __name__=="__main__":
         plt.ion()
-        fig = plt.figure()
+        plt.grid()
+
         plt.xlim([0, 50])
         x,y, yk, ym = [], [], [], []
 
